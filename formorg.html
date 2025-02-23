@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Side Effect Reporting Form</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #1A76D1;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo img {
+            height: 150px;
+            margin-left: 90px;
+        }
+        .header .nav {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .header .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        .container {
+            width: 60%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+        }
+        h2 {
+            text-align: center;
+            color: #1A76D1;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .gender input {
+            width: auto;
+            margin-right: 10px;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .separator {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #1A76D1;
+        }
+        .file-upload {
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        .file-upload label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1A76D1;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .file-upload label:hover {
+            background-color: #155a9c;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html"><img src="img/logonew.png" alt="Logo"></a>
+        </div>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="moreaboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Medicine Side Effect Reporting Form</h2>
+        <form action="/submit-form" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Patient Initials:</label>
+                <input type="text" name="patient-initials" placeholder="E.g., PS" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="gender">
+                    <input type="radio" name="gender" value="Male" required> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                    <input type="radio" name="gender" value="Other"> Other
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Age (Years or Months):</label>
+                <input type="text" name="age" placeholder="Enter age" required>
+            </div>
+
+            <div class="form-group">
+                <label>Reason for Taking Medicine:</label>
+                <textarea name="reason" placeholder="Enter disease or symptoms" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Medicines Advised By:</label>
+                <select name="advised-by" required>
+                    <option>Doctor</option>
+                    <option>Pharmacist</option>
+                    <option>Friends/Relatives</option>
+                    <option>Self</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Side Effect Description:</label>
+                <textarea name="side-effect" placeholder="Describe the side effect" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Different Types of Medicines Taken:</label>
+                <input type="number" id="medicine-count" name="medicine-count" min="1" placeholder="Enter number of medicines" oninput="generateMedicineFields()" required>
+            </div>
+
+            <div id="medicine-details"></div>
+
+            <div class="form-group">
+                <label>When did the side effect start?</label>
+                <input type="date" name="side-effect-start" required>
+            </div>
+
+            <div class="form-group">
+                <label>When did the side effect stop?</label>
+                <input type="date" name="side-effect-stop" required>
+            </div>
+
+            <div class="form-group">
+                <label>Severity of Side Effect:</label>
+                <select name="severity" required>
+                    <option>Did not affect daily activities</option>
+                    <option>Affected daily activities</option>
+                    <option>Hospitalized</option>
+                    <option>Death</option>
+                    <option>Others</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div class="separator">or</div>
+
+        <div class="file-upload">
+            <label for="file-upload">Upload a File</label>
+            <input type="file" id="file-upload" name="file-upload">
+        </div>
+    </div>
+
+    <script>
+        function generateMedicineFields() {
+            let count = document.getElementById("medicine-count").value;
+            let container = document.getElementById("medicine-details");
+            container.innerHTML = "";
+            for (let i = 1; i <= count; i++) {
+                container.innerHTML += `
+                    <div class="form-group">
+                        <label>Medicine ${i} Name:</label>
+                        <input type="text" name="medicine-name-${i}" placeholder="Enter medicine name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Medicine ${i} Dosage:</label>
+                        <input type="text" name="medicine-dosage-${i}" placeholder="Enter dosage (e.g., 250 mg, twice a day)" required>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
