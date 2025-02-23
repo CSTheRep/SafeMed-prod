@@ -92,6 +92,13 @@
         .file-upload label:hover {
             background-color: #155a9c;
         }
+
+        .separator {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #1A76D1;
+        }
     </style>
 </head>
 <body>
@@ -159,15 +166,41 @@
             <button type="submit" class="submit-btn">Submit</button>
         </form>
 
+        <div class="separator">or</div>
+
         <div class="file-upload">
             <label for="file-upload">Upload a File</label>
             <input type="file" id="file-upload" name="file-upload">
         </div>
     </div>
 
-
-    
     <script>
+        function generateMedicineFields() {
+            let count = document.getElementById("medicine-count").value;
+            let container = document.getElementById("medicine-details");
+            container.innerHTML = "";
+            for (let i = 1; i <= count; i++) {
+                container.innerHTML += `
+                    <div class="form-group medicine">
+                        <label>Medicine ${i} Name:</label>
+                        <input type="text" name="medicine_name[]" placeholder="Enter medicine name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Medicine ${i} Dosage:</label>
+                        <input type="text" name="dosage[]" placeholder="Enter dosage (e.g., 250 mg, twice a day)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Medicine ${i} Prescription Duration:</label>
+                        <input type="text" name="prescription_duration[]" placeholder="Enter duration (e.g., 1 day, 2 days)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Times Medicine Taken in a Day:</label>
+                        <input type="number" name="times_per_day[]" min="1" placeholder="Enter number of times" required>
+                    </div>
+                `;
+            }
+        }
+
         document.getElementById('reportForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             const formData = new FormData(this);
@@ -176,11 +209,15 @@
             document.querySelectorAll('.medicine').forEach(med => {
                 const medicineName = med.querySelector('[name="medicine_name[]"]').value.trim();
                 const dosage = med.querySelector('[name="dosage[]"]').value.trim();
+                const prescriptionDuration = med.querySelector('[name="prescription_duration[]"]').value.trim();
+                const timesPerDay = med.querySelector('[name="times_per_day[]"]').value.trim();
                 
-                if (medicineName && dosage) {
+                if (medicineName && dosage && prescriptionDuration && timesPerDay) {
                     medicines.push({
                         name: medicineName,
-                        dosage: dosage
+                        dosage: dosage,
+                        prescriptionDuration: prescriptionDuration,
+                        timesPerDay: timesPerDay
                     });
                 }
             });
@@ -204,8 +241,6 @@
                 alert('Failed to submit form.');
             }
         });
-        
-
     </script>
 </body>
 </html>
