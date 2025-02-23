@@ -3,55 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine Report Form</title>
+    <title>Medicine Side Effect Reporting Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
-        form {
-            max-width: 400px;
+        .header {
+            background-color: #1A76D1;
+            color: white;
+            padding: 10px 0;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
         }
-        input, select, textarea, button {
+        .header .logo img {
+            height: 150px;
+            margin-left: 90px;
+        }
+        .header .nav {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .header .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        .container {
+            width: 60%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+        }
+        h2 {
+            text-align: center;
+            color: #1A76D1;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
             padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
             font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .file-upload {
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        .file-upload label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1A76D1;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .file-upload label:hover {
+            background-color: #155a9c;
         }
     </style>
 </head>
 <body>
-    <h2>Submit Medicine Report</h2>
-    <form id="reportForm" enctype="multipart/form-data">
-        <input type="text" name="patient_initials" placeholder="Patient Initials" required>
-        <select name="gender" required>
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-        </select>
-        <input type="number" name="age" placeholder="Age" required>
-        <input type="text" name="reason" placeholder="Reason" required>
-        <input type="text" name="advised_by" placeholder="Advised By" required>
-        <textarea name="side_effect_description" placeholder="Side Effect Description" required></textarea>
-        <input type="number" name="medicine_count" placeholder="Medicine Count" required>
-        <input type="date" name="start_date" required>
-        <input type="date" name="stop_date" required>
-        <input type="text" name="severity" placeholder="Severity" required>
-        <!-- <input type="file" name="file-upload" required> -->
-        
-        <h3>Medicines</h3>
-        <div id="medicines">
-            <div class="medicine">
-                <input type="text" name="medicine_name[]" placeholder="Medicine Name" required>
-                <input type="text" name="dosage[]" placeholder="Dosage" required>
-            </div>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html"><img src="img/logonew.png" alt="Logo"></a>
         </div>
-        <button type="button" onclick="addMedicine()">Add Medicine</button>
-        <button type="submit">Submit</button>
-    </form>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="moreaboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Medicine Side Effect Reporting Form</h2>
+        <form id="reportForm" enctype="multipart/form-data">
+            <label>Patient Initials:</label>
+            <input type="text" name="patient_initials" placeholder="E.g., PS" required>
+
+            <label>Gender:</label>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label>Age (Years or Months):</label>
+            <input type="text" name="age" placeholder="Enter age" required>
+
+            <label>Reason for Taking Medicine:</label>
+            <textarea name="reason" placeholder="Enter disease or symptoms" required></textarea>
+
+            <label>Medicines Advised By:</label>
+            <select name="advised_by" required>
+                <option>Doctor</option>
+                <option>Pharmacist</option>
+                <option>Friends/Relatives</option>
+                <option>Self</option>
+            </select>
+
+            <label>Side Effect Description:</label>
+            <textarea name="side_effect_description" placeholder="Describe the side effect" required></textarea>
+
+            <label>Number of Different Types of Medicines Taken:</label>
+            <input type="number" id="medicine-count" name="medicine_count" min="1" placeholder="Enter number of medicines" oninput="generateMedicineFields()" required>
+
+            <div id="medicine-details"></div>
+
+            <label>When did the side effect start?</label>
+            <input type="date" name="start_date" required>
+
+            <label>When did the side effect stop?</label>
+            <input type="date" name="stop_date" required>
+
+            <label>Severity of Side Effect:</label>
+            <select name="severity" required>
+                <option>Did not affect daily activities</option>
+                <option>Affected daily activities</option>
+                <option>Hospitalized</option>
+                <option>Death</option>
+                <option>Others</option>
+            </select>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div class="file-upload">
+            <label for="file-upload">Upload a File</label>
+            <input type="file" id="file-upload" name="file-upload">
+        </div>
+    </div>
+
+
     
     <script>
         document.getElementById('reportForm').addEventListener('submit', async function(event) {
@@ -79,7 +193,7 @@
             formData.append('medicines', JSON.stringify(medicines));
         
             try {
-                const response = await fetch('http://localhost:5000/submit-form', {
+                const response = await fetch('https://safemed-prod.onrender.com/submit-form', {
                     method: 'POST',
                     body: formData
                 });
