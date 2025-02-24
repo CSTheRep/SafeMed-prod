@@ -190,6 +190,7 @@ body{
 .header{
 	background-color:#fff;
 	position:relative;
+	
 }
 .header .navbar-collapse{
 	padding:0;
@@ -938,7 +939,7 @@ body{
 .why-choose .choose-right{
 	height:100%;
 	width:100%;
-	background-image:url('img/video-bg.jpg');
+	background-image:url('/img/video-bg.png');
 	background-size:cover;
 	background-position:center;
 	background-repeat:no-repeat;
@@ -4020,15 +4021,15 @@ body{
 /* Floating Button */
 .floating-btn1 {
     position: fixed;
-    bottom: 120px;
-    left: 50px;
+    bottom: 90px;
+    left: 30px;
     background-color: #0c0c0c;
     color: white;
-    padding: 15px 20px;
+    padding: 10px 15px; /* Decreased size */
     border-radius: 50px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px; /* Decreased font size */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     transition: background-color 0.3s ease;
@@ -4036,12 +4037,34 @@ body{
 
 .floating-btn1:hover {
     background-color: #9599a1;
+    color: white; /* Ensure font color remains white on hover */
 }
 
 .floating-btn {
     position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: #0c0c0c;
+    color: white;
+    padding: 10px 15px; /* Decreased size */
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px; /* Decreased font size */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.floating-btn:hover {
+    background-color: #9599a1;
+    color: white; /* Ensure font color remains white on hover */
+}
+
+.floating-btn2 {
+    position: fixed;
     bottom: 50px;
-    left: 50px;
+    right: 50px;
     background-color: #0c0c0c;
     color: white;
     padding: 15px 20px;
@@ -4054,7 +4077,7 @@ body{
     transition: background-color 0.3s ease;
 }
 
-.floating-btn:hover {
+.floating-btn2:hover {
     background-color: #9599a1;
 }
 
