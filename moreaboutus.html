@@ -3,122 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>About Us | SafeMed</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
-    
-    header {
-        background-color: #6fb1f2;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-    }
-    
-    header h1 {
-        margin: 0;
-    }
-    
-    nav ul {
-        list-style: none;
-        padding: 0;
-    }
-    
-    nav ul li {
-        display: inline;
-        margin: 0 10px;
-    }
-    
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-    }
-    
-    main {
-        padding: 20px;
-    }
-    
-    #about-us {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    footer {
-        background-color: #1A76D1;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-    }
-  </style>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #6fb1f2;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header .logo img {
+            max-width: 150px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        #about-us {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #about-us h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        #about-us p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        footer {
+            background-color: #1A76D1;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header Section -->
     <header>
-        <h1>SafeMed</h1>
-       <!-- <nav>
+        <div class="logo">
+            <a href="index.html"><img src="img/logo.png" alt="SafeMed Logo"></a>
+        </div>
+        <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="moreaboutus.html">About Us</a></li>
+                <li><a href="moreaboutus.html" class="active">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Learn Now</a></li>
+                <li><a href="#">Blogs</a></li>
             </ul>
-        </nav> -->
-        <div class="col-lg-3 col-md-3 col-12">
-            <!-- Start Logo -->
-            <div class="logo">
-                <a href="index.html"><img src="img/logo.png" alt="#"></a>
-            </div>
-            <!-- End Logo -->
-            <!-- Mobile Nav -->
-            <div class="mobile-nav"></div>
-            <!-- End Mobile Nav -->
-        </div>
-        <div class="col-lg-7 col-md-9 col-12">
-            <!-- Main Menu -->
-            <div class="main-menu">
-                <nav class="navigation">
-                    <ul class="nav menu">
-                        <li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
-                            <ul class="dropdown">
-                                <li><a href="index.html">EXAMPLE</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Learn now </a></li>
-                        <li><a href="#">ADE </a></li>
-                        <li><a href="#">Pages <i class="icofont-rounded-down"></i></a>
-                            <ul class="dropdown">
-                                <li><a href="404.html">404 Error</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>
-                            <ul class="dropdown">
-                                <li><a href="blog-single.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <!--/ End Main Menu -->
-        </div>
+        </nav>
     </header>
+
+    <!-- Main Content -->
     <main>
         <section id="about-us">
             <h2>About Us</h2>
-            <p>Welcome to the About Us section. Here you can learn more about our company and our mission.</p>
+            <p>
+                Welcome to SafeMed! We are dedicated to providing reliable and accessible healthcare solutions for everyone. 
+                Our mission is to empower individuals with the tools and knowledge they need to make informed health decisions.
+            </p>
+            <p>
+                At SafeMed, we believe in innovation, trust, and care. Our team works tirelessly to ensure that our services 
+                meet the highest standards of quality and reliability.
+            </p>
         </section>
     </main>
+
+    <!-- Footer Section -->
     <footer>
-        <p>&copy; SafeMed. All rights reserved.</p>
+        <p>&copy; 2025 SafeMed. All rights reserved.</p>
     </footer>
 </body>
 </html>

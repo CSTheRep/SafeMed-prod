@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Adverse Drug Reactions | SafeMed</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/img/logoblack.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        :root {
+            --primary-color: #1A76D1;
+            --secondary-color: #FF5733;
+            --accent-color: #4CAF50;
+            --dark-color: #2C3E50;
+            --light-color: #F8F9FA;
+            --text-color: #333333;
+            --text-light: #777777;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header .logo img {
+            height: 80px;
+            margin-left: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        header .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        header nav {
+            margin-right: 20px;
+        }
+        
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        header nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+            text-decoration: none;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary-color), #0d5ba8);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/medical-pattern.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background-color: var(--light-color);
+        }
+        
+        .content-section {
+            padding: 60px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h3 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .adr-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .adr-type {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .adr-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .adr-type h4 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .adr-type h4 span.type-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .adr-type ul {
+            padding-left: 20px;
+        }
+        
+        .adr-type ul li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .adr-type ul li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .statistics-section {
+            background: linear-gradient(135deg, var(--dark-color), #1a2b3d);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .prevention-section {
+            background-color: #f5f9ff;
+            padding: 60px 20px;
+        }
+        
+        .prevention-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .step {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+        }
+        
+        .step h4 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .step p {
+            color: var(--text-light);
+        }
+        
+        .resources-section {
+            padding: 60px 20px;
+        }
+        
+        .resource-card {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .resource-img {
+            flex: 0 0 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .resource-content {
+            flex: 1;
+            padding: 25px;
+        }
+        
+        .resource-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .resource-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .resource-link {
+            display: inline-block;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        .resource-link i {
+            margin-left: 5px;
+        }
+        
+        .faq-section {
+            background-color: #f5f9ff;
+            padding: 60px 20px;
+        }
+        
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: #1565b7;
+        }
+        
+        .accordion-header i {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-header.active i {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .accordion-content.show {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid var(--primary-color);
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature img {
+            max-width: 100px;
+            margin-bottom: 20px;
+            height: auto;
+        }
+        
+        .feature h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .feature p {
+            color: var(--text-light);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 20px 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-column p {
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            header .logo {
+                margin-bottom: 15px;
+                margin-left: 0;
+            }
+            
+            header nav {
+                margin-right: 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .resource-card {
+                flex-direction: column;
+            }
+            
+            .resource-img {
+                flex: 0 0 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="img/logonew.png" alt="SafeMed Logo"></a>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="moreaboutus.html"><i class="fas fa-info-circle"></i> About Us</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Understanding Adverse Drug Reactions (ADRs)</h1>
+            <p>Learn about the risks, types, and prevention of adverse drug reactions to ensure safer medication use.</p>
+            <a href="#types" class="cta-button">Explore ADR Types</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="info-card">
+                <h3><i class="fas fa-exclamation-triangle"></i> What Are Adverse Drug Reactions?</h3>
+                <p>An Adverse Drug Reaction (ADR) is defined as a harmful, unintended response to a medication that occurs at doses normally used for treatment. ADRs can range from mild side effects to severe, life-threatening conditions and are a major concern in healthcare worldwide.</p>
+                <p>According to the World Health Organization (WHO), ADRs are among the leading causes of morbidity and mortality in healthcare, accounting for approximately 5% of all hospital admissions and occurring in 10-20% of hospitalized patients.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADR Types Section -->
+    <section id="types" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Types of Adverse Drug Reactions</h2>
+                <p>ADRs are classified into several types based on their mechanism and timing of occurrence</p>
+            </div>
+            
+            <div class="adr-types">
+                <div class="adr-type">
+                    <h4><span class="type-letter">A</span> Augmented (Dose-related)</h4>
+                    <ul>
+                        <li>Predictable from the drug's pharmacology</li>
+                        <li>Dose-dependent and common</li>
+                        <li>Example: Bleeding with warfarin, hypoglycemia with insulin</li>
+                        <li>Often manageable by dose adjustment</li>
+                    </ul>
+                </div>
+                
+                <div class="adr-type">
+                    <h4><span class="type-letter">B</span> Bizarre (Non-dose-related)</h4>
+                    <ul>
+                        <li>Unpredictable from the drug's pharmacology</li>
+                        <li>Often immune-mediated or genetic</li>
+                        <li>Example: Anaphylaxis with penicillin, Stevens-Johnson syndrome</li>
+                        <li>Usually requires drug discontinuation</li>
+                    </ul>
+                </div>
+                
+                <div class="adr-type">
+                    <h4><span class="type-letter">C</span> Chronic (Time-related)</h4>
+                    <ul>
+                        <li>Related to duration of therapy</li>
+                        <li>Example: Adrenal suppression with corticosteroids, osteoporosis with long-term steroid use</li>
+                        <li>Often reversible upon discontinuation</li>
+                    </ul>
+                </div>
+                
+                <div class="adr-type">
+                    <h4><span class="type-letter">D</span> Delayed (Time-related)</h4>
+                    <ul>
+                        <li>Occur after prolonged exposure or with delay</li>
+                        <li>Example: Carcinogenesis, tardive dyskinesia with antipsychotics</li>
+                        <li>May persist after drug discontinuation</li>
+                    </ul>
+                </div>
+                
+                <div class="adr-type">
+                    <h4><span class="type-letter">E</span> End-of-treatment (Withdrawal)</h4>
+                    <ul>
+                        <li>Occur after stopping the drug</li>
+                        <li>Example: Withdrawal symptoms with opioids, rebound hypertension with beta-blockers</li>
+                        <li>Often requires gradual dose reduction</li>
+                    </ul>
+                </div>
+                
+                <div class="adr-type">
+                    <h4><span class="type-letter">F</span> Failure of therapy</h4>
+                    <ul>
+                        <li>Unexpected failure of drug efficacy</li>
+                        <li>Example: Antibiotic resistance, drug interactions reducing effectiveness</li>
+                        <li>May require dose adjustment or alternative therapy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">ADR By The Numbers</h2>
+                <p style="color: rgba(255,255,255,0.8);">Understanding the impact of adverse drug reactions globally</p>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">5%</div>
+                    <div class="stat-label">of hospital admissions are due to ADRs</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">10-20%</div>
+                    <div class="stat-label">of hospitalized patients experience ADRs</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">4th</div>
+                    <div class="stat-label">leading cause of death in the India</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">$136B</div>
+                    <div class="stat-label">annual cost of ADRs in the US alone</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prevention Section -->
+    <section class="prevention-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Preventing Adverse Drug Reactions</h2>
+                <p>Key strategies to minimize the risk of experiencing ADRs</p>
+            </div>
+            
+            <div class="prevention-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h4>Complete Medical History</h4>
+                    <p>Always provide your healthcare provider with a complete medical history, including all medications, supplements, and allergies.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h4>Medication Review</h4>
+                    <p>Regularly review all medications with your pharmacist or doctor to identify potential interactions or unnecessary drugs.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4>Educate Yourself</h4>
+                    <p>Learn about your medications, including potential side effects and what to watch for when taking them.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    <div>
+                    </div>
+                    </div>
+                    <h4>Monitor and Report</h4>
+                    <p>Pay attention to your body's response to medications and report any unusual symptoms to your healthcare provider immediately.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- High-Risk Medications Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="info-card">
+                <h3><i class="fas fa-skull-crossbones"></i> High-Risk Medications</h3>
+                <p>Certain medications are more likely to cause adverse reactions and require special monitoring:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div>
+                        <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Anticoagulants (e.g., Warfarin)</h5>
+                        <ul>
+                            <li>Risk of severe bleeding</li>
+                            <li>Requires regular blood monitoring</li>
+                            <li>Many food and drug interactions</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Chemotherapy Drugs</h5>
+                        <ul>
+                            <li>Narrow therapeutic index</li>
+                            <li>Severe side effects common</li>
+                            <li>Requires careful dosing</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Opioids</h5>
+                        <ul>
+                            <li>Risk of respiratory depression</li>
+                            <li>High addiction potential</li>
+                            <li>Dangerous interactions with other CNS depressants</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Resources</h2>
+                <p>Trusted sources for more information about adverse drug reactions</p>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-img" style="background-image: url('img/who-resource.jpg');"></div>
+                <div class="resource-content">
+                    <h4>WHO Pharmacovigilance Resources</h4>
+                    <p>The World Health Organization provides comprehensive information on drug safety monitoring and adverse reaction reporting systems worldwide.</p>
+                    <a href="https://www.who.int/medicines/areas/quality_safety/safety_efficacy/Drug-information-resources.pdf" class="resource-link" target="_blank">Visit Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-img" style="background-image: url('img/fda-resource.jpg');"></div>
+                <div class="resource-content">
+                    <h4>FDA Adverse Event Reporting System (FAERS)</h4>
+                    <p>The U.S. Food and Drug Administration's database of adverse event reports, medication error reports, and product quality complaints.</p>
+                    <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" class="resource-link" target="_blank">Visit Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-img" style="background-image: url('img/drugs-resource.jpg');"></div>
+                <div class="resource-content">
+                    <h4>Drugs.com Interaction Checker</h4>
+                    <p>Check for potential drug interactions and learn about possible adverse effects of medication combinations.</p>
+                    <a href="https://www.drugs.com/drug_interactions.html" class="resource-link" target="_blank">Visit Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about adverse drug reactions answered</p>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What's the difference between a side effect and an adverse drug reaction?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>A side effect is any effect caused by a drug other than the intended therapeutic effect, whether beneficial, neutral, or harmful. An adverse drug reaction is specifically a harmful, unintended response to a drug that occurs at doses normally used for treatment. All ADRs are side effects, but not all side effects are ADRs.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>How common are serious adverse drug reactions?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Serious ADRs (those that result in death, hospitalization, disability, or birth defects) occur in approximately 6.7% of hospitalized patients. Fatal ADRs occur in about 0.32% of hospitalized patients, making them between the 4th and 6th leading cause of death in the US.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Who is most at risk for adverse drug reactions?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Certain populations are at higher risk for ADRs, including:
+                        <ul>
+                            <li>Elderly patients (due to multiple medications and altered drug metabolism)</li>
+                            <li>Patients taking multiple medications (polypharmacy)</li>
+                            <li>Patients with kidney or liver impairment</li>
+                            <li>Children (especially neonates)</li>
+                            <li>Patients with a history of drug allergies or previous ADRs</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What should I do if I suspect I'm having an adverse drug reaction?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>If you suspect an ADR:
+                        <ol>
+                            <li>Stop taking the medication if symptoms are severe (unless instructed otherwise by your doctor)</li>
+                            <li>Contact your healthcare provider immediately</li>
+                            <li>For severe reactions (difficulty breathing, swelling, etc.), seek emergency medical attention</li>
+                            <li>Report the reaction to your country's pharmacovigilance program</li>
+                            <li>Keep a record of the reaction for future reference</li>
+                        </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="content-section">
+        <div class="features">
+            <div class="feature">
+                <img src="img/feature1.png" alt="ADR Reporting">
+                <h3>ADR Reporting System</h3>
+                <p>Our advanced reporting system allows healthcare professionals and patients to easily report suspected adverse drug reactions.</p>
+            </div>
+            <div class="feature">
+                <img src="img/feature2.png" alt="Drug Interaction Checker">
+                <h3>Drug Interaction Checker</h3>
+                <p>Check for potential interactions between medications to prevent adverse reactions before they occur.</p>
+            </div>
+            <div class="feature">
+                <img src="img/feature3.png" alt="Patient Education">
+                <h3>Patient Education</h3>
+                <p>Comprehensive resources to help patients understand their medications and potential side effects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About SafeMed</h3>
+                <p>SafeMed is dedicated to improving medication safety through education, research, and innovative tools for healthcare professionals and patients.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="moreaboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Medical Way, Health City, HC 12345</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> info@safemed.org</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest updates on medication safety and adverse drug reaction alerts.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: none;">
+                    <button type="submit" style="background: var(--secondary-color); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 SafeMed. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.classList.toggle('active');
+                const content = header.nextElementSibling;
+                content.classList.toggle('show');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if(email) {
+                alert('Thank you for subscribing to our newsletter!');
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>

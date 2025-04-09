@@ -380,26 +380,38 @@
     </div>
 
     <script>
-        function generateMedicineFields() {
-            let count = document.getElementById("medicine-count").value;
-            let container = document.getElementById("medicine-details");
-            container.innerHTML = "";
-            
-            for (let i = 1; i <= count; i++) {
-                container.innerHTML += `
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Medicine ${i} Name:</label>
-                            <input type="text" name="medicine-name-${i}" placeholder="Enter medicine name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Medicine ${i} Dosage:</label>
-                            <input type="text" name="medicine-dosage-${i}" placeholder="Enter dosage (e.g., 250 mg, twice a day)" required>
-                        </div>
-                    </div>
-                `;
+        document.querySelector("form").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            const formData = new FormData(event.target);
+            const formObject = {};
+    
+            // Convert FormData to JSON object
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+    
+            try {
+                const response = await fetch("https://safemed-prod.onrender.com/submit-form", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formObject),
+                });
+    
+                if (response.ok) {
+                    alert("Report submitted successfully!");
+                    event.target.reset(); // Clear form after successful submission
+                } else {
+                    alert("Failed to submit report. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again later.");
             }
-        }
+        });
     </script>
+d    
 </body>
 </html>
