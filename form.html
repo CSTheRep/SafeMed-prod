@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Medicine Side Effect Reporting Form</title>
     <style>
         body {
@@ -71,27 +71,6 @@
         .submit-btn:hover {
             background-color: #218838;
         }
-        .file-upload {
-            text-align: center;
-            padding: 20px;
-            border: 2px dashed #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-        .file-upload input[type="file"] {
-            display: none;
-        }
-        .file-upload label {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #1A76D1;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .file-upload label:hover {
-            background-color: #155a9c;
-        }
     </style>
 </head>
 <body>
@@ -107,7 +86,7 @@
     </header>
     <div class="container">
         <h2>Medicine Side Effect Reporting Form</h2>
-        <form id="reportForm" enctype="multipart/form-data">
+        <form id="reportForm">
             <label>Patient Initials:</label>
             <input type="text" name="patient_initials" placeholder="E.g., PS" required>
 
@@ -136,10 +115,21 @@
             <label>Side Effect Description:</label>
             <textarea name="side_effect_description" placeholder="Describe the side effect" required></textarea>
 
-            <label>Number of Different Types of Medicines Taken:</label>
-            <input type="number" id="medicine-count" name="medicine_count" min="1" placeholder="Enter number of medicines" oninput="generateMedicineFields()" required>
+            <!-- Static Medicine Fields -->
+            <label>Medicine 1 Name:</label>
+            <input type="text" name="medicine_name_1" placeholder="Enter medicine name" required>
+            <label>Dosage:</label>
+            <input type="text" name="dosage_1" placeholder="Enter dosage" required>
 
-            <div id="medicine-details"></div>
+            <label>Medicine 2 Name:</label>
+            <input type="text" name="medicine_name_2" placeholder="Enter medicine name (optional)">
+            <label>Dosage:</label>
+            <input type="text" name="dosage_2" placeholder="Enter dosage (optional)">
+
+            <label>Medicine 3 Name:</label>
+            <input type="text" name="medicine_name_3" placeholder="Enter medicine name (optional)">
+            <label>Dosage:</label>
+            <input type="text" name="dosage_3" placeholder="Enter dosage (optional)">
 
             <label>When did the side effect start?</label>
             <input type="date" name="start_date" required>
@@ -158,55 +148,57 @@
 
             <button type="submit" class="submit-btn">Submit</button>
         </form>
-
-        <div class="file-upload">
-            <label for="file-upload">Upload a File</label>
-            <input type="file" id="file-upload" name="file-upload">
-        </div>
     </div>
 
-
-    
     <script>
         document.getElementById('reportForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             const formData = new FormData(this);
-            
+    
+            // Collect and validate medicines
             const medicines = [];
-            document.querySelectorAll('.medicine').forEach(med => {
-                const medicineName = med.querySelector('[name="medicine_name[]"]').value.trim();
-                const dosage = med.querySelector('[name="dosage[]"]').value.trim();
-                
-                if (medicineName && dosage) {
-                    medicines.push({
-                        name: medicineName,
-                        dosage: dosage
-                    });
-                }
-            });
-        
-           // if (medicines.length === 0) {
-             //   alert("Please add at least one medicine.");
-               // return;
-            //}
-        
+    
+            const med1 = {
+                name: formData.get("medicine_name_1").trim(),
+                dosage: formData.get("dosage_1").trim()
+            };
+            if (med1.name && med1.dosage) medicines.push(med1);
+    
+            const med2Name = formData.get("medicine_name_2")?.trim();
+            const med2Dosage = formData.get("dosage_2")?.trim();
+            if (med2Name && med2Dosage) {
+                medicines.push({ name: med2Name, dosage: med2Dosage });
+            }
+    
+            const med3Name = formData.get("medicine_name_3")?.trim();
+            const med3Dosage = formData.get("dosage_3")?.trim();
+            if (med3Name && med3Dosage) {
+                medicines.push({ name: med3Name, dosage: med3Dosage });
+            }
+    
             formData.append('medicines', JSON.stringify(medicines));
-        
+    
             try {
-                const response = await fetch('http://localhost:5000/submit-form', {
+                const response = await fetch('https://localhost:5000/submit-form', {
                     method: 'POST',
                     body: formData
                 });
+    
                 const result = await response.json();
-                alert(result.message);
+    
+                if (result.success) {
+                    alert("Report submitted successfully! Reference ID: " + result.reportId);
+                    window.location.reload();
+                } else {
+                    alert("Error: " + (result.error || "Failed to submit form"));
+                }
             } catch (error) {
                 console.error('Error submitting form:', error);
-                alert('Failed to submit form.');
+                alert('Failed to submit form. Please try again.');
             }
         });
-        
-        
-
     </script>
+    
+
 </body>
 </html>

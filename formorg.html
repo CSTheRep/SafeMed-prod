@@ -3,221 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine Side Effect Reporting Form</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Medicines Side Effect Reporting Form (For Consumers)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .header {
-            background-color: #1A76D1;
-            color: white;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header .logo img {
-            height: 150px;
-            margin-left: 90px;
-        }
-        .header .nav {
-            display: flex;
-            align-items: center;
-            margin-right: 20px;
-        }
-        .header .nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
+            padding: 20px;
+            color: #333;
         }
         .container {
-            width: 60%;
-            background: white;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 50px auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h2 {
+        .header {
             text-align: center;
-            color: #1A76D1;
             margin-bottom: 20px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
         }
-        label {
+        .header h1 {
+            color: #0066cc;
+            margin-bottom: 5px;
+        }
+        .header h2 {
+            font-size: 18px;
+            color: #333;
+            margin-top: 0;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .section-title {
+            background-color: #f5f5f5;
+            padding: 8px;
+            margin: -15px -15px 15px -15px;
+            border-bottom: 1px solid #ddd;
             font-weight: bold;
-            margin-top: 10px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 15px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .gender input {
-            width: auto;
-            margin-right: 10px;
-        }
-        .submit-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-            font-size: 16px;
-        }
-        .submit-btn:hover {
-            background-color: #218838;
+            color: #0066cc;
         }
         .form-group {
             margin-bottom: 15px;
         }
-        .separator {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 18px;
-            color: #1A76D1;
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
-        .file-upload {
-            text-align: center;
-            padding: 20px;
-            border: 2px dashed #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-        .file-upload input[type="file"] {
-            display: none;
+        textarea {
+            height: 100px;
+            resize: vertical;
         }
-        .file-upload label {
+        .radio-group, .checkbox-group {
+            margin-top: 5px;
+        }
+        .radio-group label, .checkbox-group label {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #1A76D1;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
+            margin-right: 15px;
+            font-weight: normal;
         }
-        .file-upload label:hover {
-            background-color: #155a9c;
+        .medicine-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        .medicine-table th, .medicine-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .medicine-table th {
+            background-color: #f5f5f5;
+        }
+        .btn {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0055aa;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        .required:after {
+            content: " *";
+            color: red;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <a href="index.html"><img src="img/logonew.png" alt="Logo"></a>
-        </div>
-        <div class="nav">
-            <a href="index.html">Home</a>
-            <a href="moreaboutus.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-        </div>
-    </header>
     <div class="container">
-        <h2>Medicine Side Effect Reporting Form</h2>
-        <form action="/submit-form" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label>Patient Initials:</label>
-                <input type="text" name="patient-initials" placeholder="E.g., PS" required>
-            </div>
+        <div class="header">
+            <h1>MEDICINES SIDE EFFECT REPORTING FORM (FOR CONSUMERS)</h1>
+            <p>Indian Pharmacopoeia Commission, National Coordination Centre- Pharmacovigilance Programme of India, Ministry of Health & Family Welfare, Government of India.</p>
+        </div>
 
-            <div class="form-group">
-                <label>Gender:</label>
-                <div class="gender">
-                    <input type="radio" name="gender" value="Male" required> Male
-                    <input type="radio" name="gender" value="Female"> Female
-                    <input type="radio" name="gender" value="Other"> Other
+        <form>
+            <!-- Section 1: Patient Details -->
+            <div class="section">
+                <div class="section-title">1. Patient Details</div>
+                
+                <div class="form-group">
+                    <label for="patientInitials" class="required">Patient Initials:</label>
+                    <input type="text" id="patientInitials" name="patientInitials" required>
+                    <small>Write first letter of the name and first letter of the surname (e.g. Pradeep Sharma-PS)</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Gender:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="male" required> Male</label>
+                        <label><input type="radio" name="gender" value="female"> Female</label>
+                        <label><input type="radio" name="gender" value="other"> Other</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age" class="required">Age (Year or Month):</label>
+                    <input type="text" id="age" name="age" required>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Age (Years or Months):</label>
-                <input type="text" name="age" placeholder="Enter age" required>
+            <!-- Section 2: Health Information -->
+            <div class="section">
+                <div class="section-title">2. Health Information</div>
+                
+                <div class="form-group">
+                    <label for="reason" class="required">a. Reason(s) for taking medicine(s)(Disease/Symptoms):</label>
+                    <textarea id="reason" name="reason" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">b. Medicines Advised by:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="advisedBy" value="doctor"> Doctor</label>
+                        <label><input type="checkbox" name="advisedBy" value="pharmacist"> Pharmacist</label>
+                        <label><input type="checkbox" name="advisedBy" value="friends"> Friends/Relatives</label>
+                        <label><input type="checkbox" name="advisedBy" value="self"> Self (Past disease experienced/No past disease experienced)</label>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Reason for Taking Medicine:</label>
-                <textarea name="reason" placeholder="Enter disease or symptoms" required></textarea>
+            <!-- Section 3: Reporter Details -->
+            <div class="section">
+                <div class="section-title">3. Details of Person Reporting the Side Effect</div>
+                
+                <div class="form-group">
+                    <label for="reporterName">Name (Optional):</label>
+                    <input type="text" id="reporterName" name="reporterName">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reporterAddress" class="required">Address:</label>
+                    <textarea id="reporterAddress" name="reporterAddress" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reporterPhone" class="required">Telephone No:</label>
+                    <input type="tel" id="reporterPhone" name="reporterPhone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reporterEmail">Email:</label>
+                    <input type="email" id="reporterEmail" name="reporterEmail">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Medicines Advised By:</label>
-                <select name="advised-by" required>
-                    <option>Doctor</option>
-                    <option>Pharmacist</option>
-                    <option>Friends/Relatives</option>
-                    <option>Self</option>
-                </select>
+            <!-- Section 4: Medicine Details -->
+            <div class="section">
+                <div class="section-title">4. Details of Medicine Taking/Taken</div>
+                
+                <table class="medicine-table">
+                    <thead>
+                        <tr>
+                            <th>Name of Medicines</th>
+                            <th>Quantity of Medicines taken</th>
+                            <th>Expiry Date</th>
+                            <th>Date of Start</th>
+                            <th>Date of Stop</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="medicineName1"></td>
+                            <td><input type="text" name="medicineQuantity1"></td>
+                            <td><input type="date" name="expiryDate1"></td>
+                            <td><input type="date" name="startDate1"></td>
+                            <td><input type="date" name="stopDate1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="medicineName2"></td>
+                            <td><input type="text" name="medicineQuantity2"></td>
+                            <td><input type="date" name="expiryDate2"></td>
+                            <td><input type="date" name="startDate2"></td>
+                            <td><input type="date" name="stopDate2"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="medicineName3"></td>
+                            <td><input type="text" name="medicineQuantity3"></td>
+                            <td><input type="date" name="expiryDate3"></td>
+                            <td><input type="date" name="startDate3"></td>
+                            <td><input type="date" name="stopDate3"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="form-group">
+                    <label>Dosage form:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="dosageForm" value="tablet"> Tablet</label>
+                        <label><input type="checkbox" name="dosageForm" value="capsule"> Capsule</label>
+                        <label><input type="checkbox" name="dosageForm" value="injection"> Injection</label>
+                        <label><input type="checkbox" name="dosageForm" value="oralLiquid"> Oral Liquids</label>
+                        <label><input type="checkbox" name="dosageForm" value="other"> If Others (Please Specify):</label>
+                        <input type="text" name="otherDosageForm" style="margin-top: 5px;">
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Side Effect Description:</label>
-                <textarea name="side-effect" placeholder="Describe the side effect" required></textarea>
+            <!-- Section 5: About the Side Effect -->
+            <div class="section">
+                <div class="section-title">5. About the Side Effect</div>
+                
+                <div class="form-group">
+                    <label for="effectStart" class="required">When did the side effect start?</label>
+                    <input type="date" id="effectStart" name="effectStart" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="effectStop">When did the side effect stop?</label>
+                    <input type="date" id="effectStop" name="effectStop">
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Side Effect is still Continuing (Yes/No):</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="continuing" value="yes" required> Yes</label>
+                        <label><input type="radio" name="continuing" value="no"> No</label>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Number of Different Types of Medicines Taken:</label>
-                <input type="number" id="medicine-count" name="medicine-count" min="1" placeholder="Enter number of medicines" oninput="generateMedicineFields()" required>
+            <!-- Section 6: Severity of Side Effect -->
+            <div class="section">
+                <div class="section-title">6. How bad was the Side Effect?</div>
+                <p>Please tick the boxes that apply</p>
+                
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="severity" value="noEffect"> Did not affect daily activities</label>
+                    <label><input type="checkbox" name="severity" value="affectedActivities"> Affect daily activities</label>
+                    <label><input type="checkbox" name="severity" value="hospitalized"> Admitted to hospital</label>
+                    <label><input type="checkbox" name="severity" value="death"> Death</label>
+                    <label><input type="checkbox" name="severity" value="other"> Others</label>
+                    <input type="text" name="otherSeverity" style="margin-top: 5px;">
+                </div>
             </div>
 
-            <div id="medicine-details"></div>
-
-            <div class="form-group">
-                <label>When did the side effect start?</label>
-                <input type="date" name="side-effect-start" required>
+            <!-- Section 7: Description of Side Effect -->
+            <div class="section">
+                <div class="section-title">7. Describe the Side Effect</div>
+                <p>What did you do to manage the side effect?</p>
+                
+                <div class="form-group">
+                    <textarea name="effectDescription" required></textarea>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>When did the side effect stop?</label>
-                <input type="date" name="side-effect-stop" required>
+            <div class="form-group" style="text-align: center;">
+                <button type="submit" class="btn">Submit Report</button>
             </div>
-
-            <div class="form-group">
-                <label>Severity of Side Effect:</label>
-                <select name="severity" required>
-                    <option>Did not affect daily activities</option>
-                    <option>Affected daily activities</option>
-                    <option>Hospitalized</option>
-                    <option>Death</option>
-                    <option>Others</option>
-                </select>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
         </form>
 
-        <div class="separator">or</div>
-
-        <div class="file-upload">
-            <label for="file-upload">Upload a File</label>
-            <input type="file" id="file-upload" name="file-upload">
+        <div class="footer">
+            <p>This reporting is voluntary, has no legal implication and aims to improve patient safety. Your active participation is valuable. The information provided in this form will be forwarded to ADR Monitoring Centre for follow-up. You are requested to cooperate with the programme officials when they contact you for more details. Please do report even if you do not have all the information.</p>
+           
+           
         </div>
     </div>
 
     <script>
-        function generateMedicineFields() {
-            let count = document.getElementById("medicine-count").value;
-            let container = document.getElementById("medicine-details");
-            container.innerHTML = "";
-            for (let i = 1; i <= count; i++) {
-                container.innerHTML += `
-                    <div class="form-group">
-                        <label>Medicine ${i} Name:</label>
-                        <input type="text" name="medicine-name-${i}" placeholder="Enter medicine name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Medicine ${i} Dosage:</label>
-                        <input type="text" name="medicine-dosage-${i}" placeholder="Enter dosage (e.g., 250 mg, twice a day)" required>
-                    </div>
-                `;
+        document.getElementById('reportForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            
+            const medicines = [];
+            document.querySelectorAll('.medicine').forEach(med => {
+                const medicineName = med.querySelector('[name="medicine_name[]"]').value.trim();
+                const dosage = med.querySelector('[name="dosage[]"]').value.trim();
+                
+                if (medicineName && dosage) {
+                    medicines.push({
+                        name: medicineName,
+                        dosage: dosage
+                    });
+                }
+            });
+        
+           // if (medicines.length === 0) {
+             //   alert("Please add at least one medicine.");
+               // return;
+            //}
+        
+            formData.append('medicines', JSON.stringify(medicines));
+        
+            try {
+                const response = await fetch('http://localhost:5000/submit-form', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Failed to submit form.');
             }
-        }
+        });
+        
+        
+
     </script>
 </body>
 </html>
